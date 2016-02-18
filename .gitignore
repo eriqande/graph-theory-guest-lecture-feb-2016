@@ -1,0 +1,13 @@
+_site/
+.Rproj.user
+.Rhistory
+
+*.aux
+*.snm
+*.log
+*.out
+*.nav
+*.toc
+ 
+.DS_Store
+pbt-conception-talk
