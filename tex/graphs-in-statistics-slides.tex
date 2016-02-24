@@ -707,7 +707,7 @@ are the adjacent {\em variable nodes}.
 
 
 %% Sum Product Overview
- \begin{frame}{Sum Product Algorithm on Factor Trees}
+ \begin{frame}{\large Sum Product Algorithm on {\em Singly-connected} Factor Graphs}
  \framesubtitle{\citet{kschischang2001factor} {\em IEEE Transactions on Information Theory}}
  \begin{itemize}
  	\item A message passing algorithm for the (marginal) conditional distribution of each $x_i$ given all the $y_i$'s.
@@ -731,7 +731,7 @@ are the adjacent {\em variable nodes}.
 \includegraphics[height = 0.8\textheight]{./images/single-node-sum-product-a.pdf}
 \column[c]{0.55\textwidth}
 \begin{itemize}
-\item Consider a single SNP with two alleles, 0 and 1, with $p_1 = .4$\\
+\item Consider a single SNP with two alleles, 0 and 1, with $\theta = q = 0.4$\\
 \item Hence three possible genotypes, 0, 1, and 2, with {\em a priori} 
 probability $0.36, 0.48, 0.16$.
 \item Observe $y_1 = 2$, but allow a 2\% chance of genotyping error that is equally likely to yield either of the two remaining genotypes, in error.
@@ -809,86 +809,115 @@ probability $0.36, 0.48, 0.16$.
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step2.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step2.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step3.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step3.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step4.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step4.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step5.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step5.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step6.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step6.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step7.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step7.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step8.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step8.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step9.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step9.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step10.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step10.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step11.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step11.pdf} 
 \end{center}
 \end{frame}
 
 
 \begin{frame}{Sum-Product Algorithm on a Larger Pedigree} 
 \begin{center} 
-\includegraphics[height = 0.8\textheight]{./images/mg-example-step12.pdf}; 
+\includegraphics[height = 0.8\textheight]{./images/mg-example-step12.pdf}
 \end{center}
 \end{frame}
 
+\begin{frame}{At the end of all that}
+\begin{itemize}
+\item There are two messages in opposing directions along each edge
+\item The dot product of those two messages, on any edge, gives the joint
+probability of all the observed data.
+\item The normalized componentwise product of any to messages along an edge
+is the marginal conditional probability of the variable associated with the
+variable node to which the edge is incident.
+\item These relationships are used in \citet{anderson2016bayesian} to design
+and efficient Markov chain Monte Carlo sampler over the space of pedigrees to infer pedigrees from wild populations.  (Demo).
+\item If there is time: what happens if the graph is not singly-connected?
+\end{itemize}
+\end{frame}
 
 
-\begin{frame}{References}
+\begin{frame}{Summary}
+\begin{itemize}
+\item {\em acyclic directed graph}: factorization over vertices of conditional probability functions; good for representing complex, but
+normalized, joint probability functions. 
+\item {\em undirected graph}: factorization over cliques of potential functions; good for representing Markov properties, conditional independence and unnormalized distributions defined from local interactions.
+\item {\em factor graph} explicit definition of factorization using factor nodes.  Sum-product algorithm.  
+\item Yay! Pedigree inference. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{References, etc.}
 \tiny
-\bibliography{../biblio/pedfactory}
-\bibliographystyle{../biblio/men}
+
+Lecture notes:
+\begin{itemize}
+\item Slides:  \url{https://github.com/eriqande/graph-theory-guest-lecture-feb-2016/blob/master/tex/graphs-in-statistics-slides.pdf}
+\item Narrative notes: \url{https://github.com/eriqande/graph-theory-guest-lecture-feb-2016/blob/master/tex/graphs-in-statistics-narrative.pdf}
+\end{itemize}
+\bibliography{./pedfactory}
+\bibliographystyle{./men}
 
 \end{frame}
 \end{document}

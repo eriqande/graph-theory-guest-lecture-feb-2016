@@ -104,7 +104,9 @@ algorithms on graphs to infer unknown pedigrees using genetic data sampled from 
 the lines of descent from parents to offspring, so it is somewhat tangible (it isn't
 a telephone wire network, but it is still somewhat tangible\ldots); and 3) because the use
 of directed graphs in statistics
-has its origins in work on ``path diagrams" by the famed geneticist Sewall Wright in the mid-1900's.
+has its origins in work on ``path diagrams" by the geneticist Sewall Wright in the mid-1900's and 
+``peeling'' computations on pedigrees were an early-discovered special case of graphical inference
+calculations.
 
 It is important to keep in mind, however, that these graphical concepts apply to probabilistic models
 and statistical inference much more widely than just to pedigrees.  In fact, their general utility 
@@ -120,19 +122,19 @@ essential probabilistic assumptions and calculations.
 The lecture today will break down into the following sections:
 \begin{itemize}
 \item introduction to necessary genetics and probabilities and the idea of inference of genotypic state,
-\item the {\em acyclic directed} graphical model formalism and factorization into conditional probabilities,
-\item conditional independence and the {\em undirected graphical} model formalism, moralization, 
+\item the {\em acyclic directed graphical models} and factorization into conditional probabilities,
+\item conditional independence and {\em undirected graphical models}, moralization, 
 neighborhoods.  ({\sl Much, much more could be said here about Markov random fields, 
-factorization over maximal clique potentials,
+factorization over potentials defined on cliques,
 graphical assessment of the computational complexity of inference, the treewidth of a graph,
 etc. but we will skip most of that.})
-\item the {\em factor-graph} model formalism, the sum-product algorithm, and loopy belief propagation,
+\item  {\em factor-graphs}, the sum-product algorithm, and loopy belief propagation,
 \item pedigree inference.
 \end{itemize}
 This list of topics, treated in depth, could easily require a full quarter, so we will just be
 skimming the
 surface here. But what I hope that people will take home from this is an appreciation 
-of the three different ways of representing probability distributions, graphically, and some of their
+of three different ways of representing probability distributions, graphically, and some of their
 applications, and the utility of graphical representations for algorithm development.
 
 
@@ -473,8 +475,8 @@ associated with a DAG.
 \subsection{The moralized undirected representation of a DAG}
 Someone with a good sense of humor (or with a Puritan vision of romantic relations) named the process of converting a DAG into
 its associated undirected graph ``moralization'' because it involves first
-``marrying'' parents that are ``unmarried" in the DAG\@.  In this case
-``unmarried'' means that they are not connected together by an edge in the
+``marrying'' parents that are ``unmarried" in the DAG\@.  In this case,
+``unmarried'' means that they are not directly connected together by an edge (\ie adjacent) in the
 graph.  Thus the two steps in moralizing a DAG are:
 \begin{enumerate}
 \item ``marrying'' unmarried parents by drawing undirected edges between all pairs of 
