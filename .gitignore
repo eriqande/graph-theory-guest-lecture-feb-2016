@@ -8,6 +8,9 @@ _site/
 *.out
 *.nav
 *.toc
+*.pdfsync
+*.synctex.gz
+*.bbl
  
 .DS_Store
 pbt-conception-talk
